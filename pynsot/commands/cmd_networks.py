@@ -528,6 +528,12 @@ def next_address(ctx, *args, **kwargs):
     required=True,
 )
 @click.option(
+    '-f',
+    '--force-delete',
+    is_flag=True,
+    help='Force delete',
+)
+@click.option(
     '-s',
     '--site-id',
     metavar='SITE_ID',
@@ -536,7 +542,7 @@ def next_address(ctx, *args, **kwargs):
     callback=callbacks.process_site_id,
 )
 @click.pass_context
-def remove(ctx, id, site_id):
+def remove(ctx, id, force_delete, site_id):
     """
     Remove a Network.
 

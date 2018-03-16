@@ -694,8 +694,15 @@ class App(object):
         log.debug('removing %s' % obj_id)
         self.rebase(data)
 
+        # import pdb; pdb.set_trace()
+        params = {}
+        force_delete = data.pop('force_delete', None)
+        if force_delete is not None:
+            params['force_delete'] = force_delete
+
         try:
-            result = self.resource(obj_id).delete()
+            # result = self.resource(obj_id).delete()
+            result = self.resource(obj_id).delete(**params)
         except HTTP_ERRORS as err:
             self.handle_error(action, data, err)
         else:
